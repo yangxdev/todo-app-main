@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import ListTodos from './ListTodos';
+import ListFooter from './ListFooter';
+
 
 export default function SearchButton() {
     const [isInputOpen, setInputOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const [todos, setTodos] = useState<string[]>([]);
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -38,31 +42,39 @@ export default function SearchButton() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Submitted:', inputValue);
+
+        setTodos(prevTodos => [...prevTodos, inputValue]);
+
         setInputValue('');
         setInputOpen(false);
     }
 
     return (
-        <div className="max-w-5xl bg-gradient-to-b rounded-lg mb-4 min-w-[30rem] btn-create-new-todo">
-            {isInputOpen ? (
-                <form className="flex items-center" onSubmit={handleSubmit}>
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        value={inputValue}
-                        onChange={handleInputChange}
-                        className="w-full py-4 pl-8 pr-64 rounded-lg pt-[1.25rem] outline-none"
-                        
-                    />
-                </form>
-            ) : (
-                <button
-                    className="btn btn-primary text-left w-full py-4 pl-8 pr-64 pt-[1.25rem] font-md rounded-lg"
-                    onClick={toggleInput}
-                >
-                    Create a new todo...
-                </button>
-            )}
-        </div>
+        <>
+            <div className="max-w-5xl bg-gradient-to-b rounded-lg mb-4 min-w-[30rem] btn-create-new-todo">
+                {isInputOpen ? (
+                    <form className="flex items-center" onSubmit={handleSubmit}>
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            value={inputValue}
+                            onChange={handleInputChange}
+                            className="w-full py-4 pl-8 pr-64 rounded-lg pt-[1.25rem] outline-none"
+
+                        />
+                    </form>
+                ) : (
+                    <button
+                        className="btn btn-primary text-left w-full py-4 pl-8 pr-64 pt-[1.25rem] font-md rounded-lg"
+                        onClick={toggleInput}
+                    >
+                        Create a new todo...
+                    </button>
+                )}
+            </div>
+            <div className="list-wrapper">
+                <ListTodos todos={todos} />
+                <ListFooter />
+            </div></>
     );
 }

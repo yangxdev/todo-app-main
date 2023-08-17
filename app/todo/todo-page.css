@@ -20,18 +20,23 @@
     --very-dark-grayish-blue-darker-theme: hsl(237, 14%, 26%);
 }
 
+body {
+    background-color: var(--very-light-gray);
+}
+
 main {
     height: 100vh;
     background-image: url('/images/bg-desktop-light.jpg');
     background-repeat: no-repeat;
-    
+
 
     .btn-create-new-todo {
         >button {
             color: var(--dark-grayish-blue);
             background-color: var(--very-light-gray);
-            
+
         }
+
         :hover {
             color: var(--very-dark-grayish-blue);
         }
@@ -41,39 +46,61 @@ main {
         background-color: var(--very-light-gray);
         border-radius: 0.5rem;
 
-        .list-todos 
-        >.placeholder {
-            padding: 1.5rem 12rem 1rem 2rem;
-            color: var(--dark-grayish-blue);
-            border-radius: 0.5rem;
+        .list-todos {
+            :hover {cursor: pointer;}
+            .todo-entry {
+                padding: 1.25rem 16rem 1rem 2rem;
+                color: var(--very-dark-grayish-blue);
+                border-radius: 0;
+                border-top: 1px solid var(--light-grayish-blue);
+                :hover {
+                    cursor: pointer;
+                }
+            }
+
+            >.todo-entry:first-child {
+                border-top: none;
+            }
+
+            >.todo-entry:last-child {
+                border-bottom: none;
+            }
         }
 
         .list-footer {
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
             color: var(--dark-grayish-blue);
-            > div {
+
+            >div {
                 font-size: 0.75rem;
             }
-            > div:first-child {
+
+            >div:first-child {
                 padding-left: 0.5rem;
             }
+
             .filter {
                 font-weight: 700;
                 width: 10rem;
                 padding: 0rem 0.5rem 0rem 0.5rem;
             }
-            > div:last-child {
+
+            >div:last-child {
                 padding-right: 0.5rem;
+
                 :hover {
                     color: var(--very-dark-grayish-blue);
                 }
             }
-            
+
             .filter {
-                > button.active {
+                >button.active {
                     color: var(--bright-blue) !important;
                     cursor: default;
                 }
-                > button:hover {
+
+                >button:hover {
                     color: var(--very-dark-grayish-blue);
                 }
             }

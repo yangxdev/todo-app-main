@@ -1,6 +1,6 @@
 export default function ListFooter() {
     return (
-        <div className="list-footer flex justify-between p-2 border-t border-gray-300">
+        <div className="list-footer flex justify-between p-4 border-t border-gray-300">
             {/* contains an item counter, a filter (all, active, completed) and a clear completed button */}
             <div className="item-counter">
                 <p>0 items left</p>
